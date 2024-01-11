@@ -1,0 +1,89 @@
+body{
+    width:100%;
+    height:100%;
+    border-radius: 24px;
+    background: linear-gradient(305deg, #F4ECE1 57.1%, #FCFBF7 145.5%);
+    overflow:hidden;
+}
+.loginsection{
+    width: 478px;
+    height: 100%;
+    flex-shrink: 0;
+    background: #FFF;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    background-color: #fff; /* Set your desired container background color */
+    border-radius: 10px; /* Add rounded corners if desired */
+    position: fixed; /* Set the position to fixed */
+    top: 0; /* Position from the top */
+    right: 0; /* Position from the right */
+}
+h2{
+    color: #000;
+    text-align: Left;
+    font-family: Poppins;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 138.8%; /* 55.52px */
+}
+input {
+    left: 71px;
+    width: 416px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    /* border-right: 1.25px solid #000; */
+    /* border-bottom: 1.25px solid #000; */
+    /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15); */
+}
+#id_username{
+    position:absolute;
+    top:260px;
+    left:71px;
+}
+#id_password{
+    position:absolute;
+    top:260px;
+    left:71px;
+}
+button{
+    width:120px;
+    position:absolute;
+    top:400px;
+    left:242.5px;
+    border-radius: 20.895px;
+    background: #FF7E00;
+    box-shadow: 0px 14.737px 23.579px -5.895px rgba(0, 0, 0, 0.20);
+    display: flex;
+    padding: 18.421px 26.526px;
+    justify-content: center;
+    align-items: center;
+    gap: 7.368px;
+}
+.logo{
+
+}
+.logo-large{
+    position:absolute;
+    left:193px;
+    top:240px;
+    width: 592.176px;
+    height: 297.443px;
+    flex-shrink: 0;
+}
+.overlay-image{
+    display: flex;
+    width: 947px;
+    height: 100px;
+    padding-left: 7px;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    flex-shrink: 0;
+    mix-blend-mode: overlay;
+    position:absolute;
+    top:30px;
+}

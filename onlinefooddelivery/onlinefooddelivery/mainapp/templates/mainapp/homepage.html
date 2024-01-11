@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Home</title>
+          <link rel="stylesheet" type="text/css" href="{% static 'mainapp/homepage.css' %}">
+    </head>
+    <body>
+        <div class="hero">
+            <div class="nav">
+                <img src="{% static 'mainapp/home-images/logo.png' %}">
+                <div class="nav-bar">
+                    <!-- make your navigation bar here-->
+                </div>
+            </div>
+            <div style="position: absolute; top: 280px; left: 48px;">
+                <header style="color: #FF7E00;font-family: Poppins;font-size: 135px;font-style: normal;font-weight: 700;line-height: 94.8%; /* 127.98px */">Sizzlers</header>
+                <h2 style="font-weight:normal;"><p> where flavors dance and moments become memories.
+                    <br>Unleash your palate in a symphony of taste and
+                    <br>join us for an extraordinary dining experience!</h2>
+                <button class="order-now-btn" id="order-now-btn">Order now</button>
+            </div>
+        </div>
+        <div class="hdiw" id="hdiw">
+            <header style="color: #F17228;text-align: center;font-family: Source Sans Pro;font-size: 43px;font-style: normal;font-weight: 700;line-height: 112%; /* 48.16px */">How does it work</header>
+            <div class="hdiw-content">
+                <div class="location">
+                    <img src="{% static 'mainapp/home-images/location.svg'%}" style="width: 150px;height: 112px;flex-shrink: 0;filter: drop-shadow(0px 20px 40px rgba(255, 174, 0, 0.29)) drop-shadow(0px 5px 10px rgba(255, 174, 0, 0.26));">
+                    <div class="loc-texts">
+                        <h4>select location</h4>
+                        <h5>you choose,<br>where your meal<br>is delivered</h5>
+                    </div>
+                </div>
+                <div class="menu">
+                    <img src="{% static 'mainapp/home-images/menu.svg'%}" style="width: 150px;height: 112px;flex-shrink: 0;filter: drop-shadow(0px 20px 40px rgba(255, 174, 0, 0.29)) drop-shadow(0px 5px 10px rgba(255, 174, 0, 0.26));">
+                    <div class="menu-texts">
+                        <h3>order</h3>
+                        <h5>browse,<br>through the menu<br>order your choice</h5>
+                    </div>
+                </div>
+                <div class="payment">
+                    <img src="{% static 'mainapp/home-images/invoice.svg'%}" style="width: 150px;height: 112px;flex-shrink: 0;filter: drop-shadow(0px 20px 40px rgba(255, 174, 0, 0.29)) drop-shadow(0px 5px 10px rgba(255, 174, 0, 0.26));">
+                    <div class="payment-texts">
+                        <h4>Pay</h4>
+                        <h5>pay for your meal,<br>safely & securely</h5>
+                    </div>
+                </div>
+                <div class="meal">
+                    <img src="{% static 'mainapp/home-images/donut.svg'%}" style="width: 86px;height: 112px;flex-shrink: 0;filter: drop-shadow(0px 20px 40px rgba(255, 174, 0, 0.29)) drop-shadow(0px 5px 10px rgba(255, 174, 0, 0.26));">
+                    <div class="meal-texts">
+                        <h3>enjoy</h3>
+                        <h5>your favorite dish<br>from your favorite<br>restauran</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="available">
+            <header style="color: #000;font-family: Poppins;font-size: 64px;font-style: normal;font-weight: 700;line-height: 94.8%; /* 60.672px */">Available Today</header>
+            <div style="width: 100%;height: 605px;">{% for item in items %}
+                    <div class="slider">
+                        <img src="{{ item.image.url }}" style="width:100%; height:auto;">
+                    </div>
+                {% endfor %}
+            </div>
+            <header style="color: #000;font-family: Poppins;font-size: 64px;font-style: normal;font-weight: 700;line-height: 94.8%; /* 60.672px */">Combos</header>
+            <div style="width: 100%;height: 605px;">{% for item in items %}
+                    <div class="slider">
+                        <img src="{{ item.image.url }}" style="width:100%; height:auto;">
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+        <div class="order" id="order">
+            <img src="{% static 'mainapp/home-images/bgimg.png'%}">
+            <div class="order-form">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <select name="food" id="food">
+                        <option value="" disabled selected hidden>select food</option>
+                        {% for item in items %}
+                        <option value="{{ item.id }}">{{ item.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <br><select name="drink" id="drink">
+                        <option value="" disabled selected hidden>select drink</option>
+                        {% for item in items %}
+                        <option value="{{ item.id }}">{{ item.name }}</option>
+                        {% endfor %}
+                    </select><br>
+
+                    <label for="quantity">Quantity:</label>
+                    <br><input type="number" name="quantity" id="quantity" min="1" required>
+
+                    <br><label for="location">Delivery Location:</label>
+                    <br><input type="text" name="location" id="location" required>
+                    <label id="Toppings">Toppings</label>
+                    <div class="container">
+                        <div class="layer">
+                            <input type="checkbox" id="option1" style="width:25px;">
+                            <label for="option1">Option 1</label>
+
+                            <input type="checkbox" id="option2" style="width:25px;">
+                            <label for="option2">Option 2</label>
+                        </div>
+                        <div class="layer">
+                            <input type="checkbox" id="option3" style="width:25px;">
+                            <label for="option3">Option 3</label>
+
+                            <input type="checkbox" id="option4" style="width:25px;">
+                            <label for="option4">Option 4</label>
+                        </div>
+                        <div class="layer">
+                            <input type="checkbox" id="option5" style="width:25px;">
+                            <label for="option5">Option 5</label>
+
+                            <input type="checkbox" id="option6" style="width:25px;">
+                            <label for="option6">Option 6</label>
+                        </div>
+                    </div>
+
+                    <label for="contact">Contact Number:</label><br>
+                    <input type="text" name="contact" id="contact" required><br>
+
+                    <button id="order-btn"type="submit" value="Order">order</button>
+                </form>
+            </div>
+            <div style="position: absolute;top: 550%;left: 65%;">
+                <img src="{% static 'mainapp/home-images/bikeman.png'%}">
+            </div>
+            <div class="footer">
+                <img src="{% static 'mainapp/home-images/footerimg.png'%}">
+            </div>
+        </div>
+    </body>
+</html>
