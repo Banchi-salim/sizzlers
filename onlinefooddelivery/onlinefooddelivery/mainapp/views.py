@@ -162,4 +162,17 @@ class LoginView(View):
 
 class HomePageView(View):
     def get(self, request):
-        return render(request, 'mainapp/homepage.html')
+        form = OrderForm()
+        return render(request, 'mainapp/homepage.html', {'form': form})
+
+    def post(self, request):
+        form = OrderForm(request.post)
+        if request.method == 'POST' and form.is_valid():
+            order = form.save(commit=False)
+            order.user = UserProfile.objects.get(user=request.user)
+            order.save()
+            form.save_m2m()
+            messages.success(request, 'Order placed successfully.')
+            return redirect('order_confirmation', order_id=order.id)
+            #return redirect('success_page')
+        return render(request, 'mainapp/homepage.html', {'form': form})

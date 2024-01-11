@@ -41,3 +41,22 @@ class CustomerFeedbackForm(forms.ModelForm):
     class Meta:
         model = CustomerFeedback
         fields = ['user', 'feedback_text', 'rating']
+
+
+# forms.py
+
+from django import forms
+from .models import MenuItem
+
+class OrderForm(forms.Form):
+    food = forms.ModelChoiceField(queryset=MenuItem.objects.all(), empty_label="Select food")
+    drink = forms.ModelChoiceField(queryset=MenuItem.objects.all(), empty_label="Select drink")
+    quantity = forms.IntegerField(min_value=1, widget=forms.NumberInput(attrs={'required': True}))
+    location = forms.CharField(widget=forms.TextInput(attrs={'required': True}))
+    chicken = forms.BooleanField(required=False)
+    Extra_Meat = forms.BooleanField(required=False)
+    Egg = forms.BooleanField(required=False)
+    coslow = forms.BooleanField(required=False)
+    plantain = forms.BooleanField(required=False)
+    Sauce = forms.BooleanField(required=False)
+    contact = forms.CharField(widget=forms.TextInput(attrs={'required': True}))

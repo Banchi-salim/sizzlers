@@ -78,51 +78,7 @@
             <div class="order-form">
                 <form action="" method="post">
                     {% csrf_token %}
-                    <select name="food" id="food">
-                        <option value="" disabled selected hidden>select food</option>
-                        {% for item in items %}
-                        <option value="{{ item.id }}">{{ item.name }}</option>
-                        {% endfor %}
-                    </select>
-                    <br><select name="drink" id="drink">
-                        <option value="" disabled selected hidden>select drink</option>
-                        {% for item in items %}
-                        <option value="{{ item.id }}">{{ item.name }}</option>
-                        {% endfor %}
-                    </select><br>
-
-                    <label for="quantity">Quantity:</label>
-                    <br><input type="number" name="quantity" id="quantity" min="1" required>
-
-                    <br><label for="location">Delivery Location:</label>
-                    <br><input type="text" name="location" id="location" required>
-                    <label id="Toppings">Toppings</label>
-                    <div class="container">
-                        <div class="layer">
-                            <input type="checkbox" id="option1" style="width:25px;">
-                            <label for="option1">Option 1</label>
-
-                            <input type="checkbox" id="option2" style="width:25px;">
-                            <label for="option2">Option 2</label>
-                        </div>
-                        <div class="layer">
-                            <input type="checkbox" id="option3" style="width:25px;">
-                            <label for="option3">Option 3</label>
-
-                            <input type="checkbox" id="option4" style="width:25px;">
-                            <label for="option4">Option 4</label>
-                        </div>
-                        <div class="layer">
-                            <input type="checkbox" id="option5" style="width:25px;">
-                            <label for="option5">Option 5</label>
-
-                            <input type="checkbox" id="option6" style="width:25px;">
-                            <label for="option6">Option 6</label>
-                        </div>
-                    </div>
-
-                    <label for="contact">Contact Number:</label><br>
-                    <input type="text" name="contact" id="contact" required><br>
+                    {{ form.as_p }}
 
                     <button id="order-btn"type="submit" value="Order">order</button>
                 </form>
