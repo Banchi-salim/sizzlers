@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'mainapp/adminhome.css' %}">
+        <title>Dashboard</title>
+    </head>
+    <body class="">
+        <div class="nav-section">
+            <img src="{% static 'mainapp/home-images/logo.png'%}">
+            <nav class="nav-bar">
+                <ul class="nav-items">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Staff</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Menu</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">orders</a>
+                      </li>
+                </ul>
+            </nav>
+        </div>
+        <div>
+            <div class="welcome">
+                <h2>Welcome:</h2>
+                <!-- get user name to display-->
+                <h3></h3>
+            </div>
+            <div class="data">
+
+                <div class="staff-table">
+                    <h2>Staff</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Staff id</th>
+                                <th>Position</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for staff in staff_list %}
+                            <tr>
+                                <td>{{ staff.name }}</td>
+                                <td>{{ staff.staff_id }}</td>
+                                <td>{{ staff.position }}</td>
+                                <td>{{ staff.date_added }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="staff-section">
+                    <div class="add-staff">
+                    <h2>Add Staff</h2><br>
+                    <form action="{% url 'sizzler_admin' %}" method="post">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button type="submit" class="add" id="add">add</button>
+                    </form>
+                    </div>
+                    <div class="delete-staff">
+                    <h2>Delete Staff:</h2><br>
+                    <form action="{% url 'sizzler_admin' %}" method="post">
+                        {% csrf_token %}
+                        <select id="staff" name="staff" class="position" required>
+                            {% for staff in staff_list %}
+                            <option value="{{staff.id}}">
+                                {{staff.name}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit" class="delete" id="delete">delete</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

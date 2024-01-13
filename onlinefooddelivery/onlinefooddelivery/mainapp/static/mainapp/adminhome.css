@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    width:100%;
+    overflow-x: hidden;
+    background: #FEEFD0;
+}
+
+h2 {
+    color: #4a4a4a;
+}
+
+h3 {
+    color: #7c7c7c;
+}
+
+.staff-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+staff-table{
+    width: 1100px;
+    height: 345px;
+    flex-shrink: 0;border-radius: 20px;
+    background: #FFF;
+}
+
+.staff-table th,
+.staff-table td {
+    padding: 1.5px;
+    text-align: left;
+}
+
+
+.add-staff h2,
+.delete-staff h2 {
+    color: #4a4a4a;
+}
+
+.add-staff input,
+.add-staff select,
+.delete-staff select {
+    width:250px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.add-staff button,
+.delete-staff button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-staff button:hover,
+.delete-staff button:hover {
+    opacity: 0.8;
+}
+.data {
+    position: absolute;
+    top: 250px;
+    left: 322px;
+    border-radius: 20px;
+    background: #FFF;
+    width: 1200px;
+    height: 345px;
+    flex-shrink: 0;
+    padding:20px;
+}
+.nav-section{
+    width: 290px;
+    height: 1500px;
+    background: white;
+    padding: 20px;
+}
+.staff-section{
+    position:absolute;
+    top:380px;
+    width: 1171px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding:30px;
+
+}
+.welcome{
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 537px;
+    height: 153px;
+    flex-shrink: 0;
+    position:absolute;
+    top:44px;
+    left:322px;
+    background:#fff;
+    padding:20px;
+}

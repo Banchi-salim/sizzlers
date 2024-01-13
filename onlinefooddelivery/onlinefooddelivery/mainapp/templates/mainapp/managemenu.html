@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'mainapp/managemenu.css' %}">
+        <title>Manage Menu</title>
+    </head>
+    <body class="">
+        <div class="nav-section">
+            <img src="{% static 'mainapp/home-images/logo.png'%}">
+            <nav class="nav-bar">
+                <ul class="nav-items">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Staff</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Menu</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">orders</a>
+                      </li>
+                </ul>
+            </nav>
+        </div>
+        <div>
+            <div class="welcome">
+                <h2>Welcome:</h2>
+                <!-- get user name to display-->
+                <h3></h3>
+            </div>
+            <div class="food-section">
+                <div class="add-menu-item">
+                    <h2>Add Menu Item</h2><br>
+                    <form action="{% url 'menu' %}" method="post">
+                        {% csrf_token %}
+                        {{form1.as_p}}
+                        <button type="submit" class="add" id="add">add</button>
+                    </form>
+                </div>
+            </div>
+            <div class="update-menu-items">
+                <h2>Update Menu Item</h2><br>
+                <form action="{% url 'menu' %}" method="post">
+                    {% csrf_token %}
+                    {{form2.as_p}}
+                    <button type="submit" class="add" id="add">update</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

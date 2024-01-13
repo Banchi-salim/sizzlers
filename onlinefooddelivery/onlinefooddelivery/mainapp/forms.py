@@ -1,9 +1,11 @@
 # forms.py
 
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
-from .models import UserProfile, MenuItem, Order, Payment, Notification, CustomerFeedback, OrderItem
+from .models import UserProfile, MenuItem, Order, Payment, Notification, CustomerFeedback, OrderItem, Staff, \
+    FoodItemAvailability
+
 
 class LoginForm(AuthenticationForm):
     pass
@@ -16,6 +18,19 @@ class MenuItemForm(forms.ModelForm):
     class Meta:
         model = MenuItem
         fields = ['name', 'description', 'price', 'image']
+
+class FoodItemAvailabilityForm(forms.ModelForm):
+    menu_item = forms.ModelChoiceField(queryset=MenuItem.objects.all(),
+                                       widget=forms.Select(attrs={'class': 'custom-class-for-menu-item-field'}))
+
+    class Meta:
+        model = FoodItemAvailability
+        fields = ['menu_item', 'availability']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # You can customize the choices or add additional attributes if needed
+        self.fields['availability'].widget.attrs['class'] = 'custom-class-for-availability-field'
 
 class OrderForm(forms.ModelForm):
     class Meta:
@@ -43,6 +58,16 @@ class CustomerFeedbackForm(forms.ModelForm):
         fields = ['user', 'feedback_text', 'rating']
 
 
+class StaffProfileForm(UserCreationForm):
+    date_added = forms.DateField(widget=forms.TextInput(attrs={'type': 'date'}))
+
+    class Meta:
+        model = Staff
+        fields = ['username', 'password1', 'password2', 'date_added', 'position']
+
+    def __init__(self, *args, **kwargs):
+        super(StaffProfileForm, self).__init__(*args, **kwargs)
+        # Customize labels, widgets, or add more fields if neededz
 # forms.py
 
 from django import forms

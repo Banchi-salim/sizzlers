@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser, Permission, Group
+
 
 class MenuItem(models.Model):
     name = models.CharField(max_length=255)
@@ -9,6 +10,13 @@ class MenuItem(models.Model):
 
     def __str__(self):
         return self.name
+
+class FoodItemAvailability(models.Model):
+    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
+    availability = models.CharField(max_length=20, choices=[('Available', 'Available'), ('Out of Stock', 'Out of Stock')])
+
+    def __str__(self):
+        return f"{self.menu_item.name} - {self.availability}"
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -67,6 +75,28 @@ class CustomerFeedback(models.Model):
 
     def __str__(self):
         return f"Feedback from {self.user.user.username}"
-from django.db import models
 
-# Create your models here.
+
+class Staff(AbstractUser):
+
+    date_hired = models.DateField(auto_now_add=True)
+    position = models.CharField(max_length=100)
+
+    class Meta:
+        permissions = [
+            ("manage_orders", "Can manage orders"),
+            ("track_deliveries", "Can track deliveries"),
+            ("update_menu_items", "Can update menu items"),
+            # Add other permissions as needed
+        ]
+
+    # Specify related_name attributes to resolve the clashes
+    groups = models.ManyToManyField(Group, related_name='staff_members')
+    user_permissions = models.ManyToManyField(Permission, related_name='staff_members_permissions')
+
+    def __str__(self):
+        return self.username
+
+
+
+
