@@ -27,8 +27,8 @@ textarea{
     box-sizing: border-box;
 }
 .add-menu-item input,
-.add-staff textarea,
-.delete-staff select {
+.add-menu-item textarea,
+.update-menu-items select {
     width:250px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -39,7 +39,7 @@ textarea{
 }
 
 .add-menu-item button,
-.delete-staff button {
+.update-menu-items button {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
@@ -101,4 +101,17 @@ textarea{
     left:322px;
     background:#fff;
     padding:20px;
+}
+.active {
+  background-color: #FEBB41;
+  color: white;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 150px;
+  height: 100%; /* Full height */
+  position: fixed; /* Make it stick, even on scroll */
+  overflow: auto; /* Enable scrolling if the sidenav has too much content */
 }

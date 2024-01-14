@@ -23,7 +23,7 @@ class UserProfileView(View):
     def get(self, request):
         user_profile = UserProfile.objects.get(user=request.user)
         form = UserProfileForm(instance=user_profile)
-        return render(request, 'user_profile.html', {'form': form})
+        return render(request, 'mainapp/user-profile.html', {'form': form})
 
     def post(self, request):
         user_profile = UserProfile.objects.get(user=request.user)
@@ -31,7 +31,7 @@ class UserProfileView(View):
         if form.is_valid():
             form.save()
             messages.success(request, 'Profile updated successfully.')
-        return render(request, 'user_profile.html', {'form': form})
+        return render(request, 'mainapp/user-profile.html', {'form': form})
 
 
 @method_decorator(login_required, name='dispatch')
@@ -222,3 +222,19 @@ class HomePageView(View):
             return redirect('order_confirmation', order_id=order.id)
             # return redirect('success_page')
         return render(request, 'mainapp/homepage.html', {'form': form})
+
+@method_decorator(login_required, name='dispatch')
+class AdminOrderView(View):
+    def get(self, request):
+        # Fetch completed orders
+        completed_orders = Order.objects.filter(status='completed')
+
+        # Fetch pending orders (status is not completed)
+        pending_orders = Order.objects.exclude(status='completed')
+
+        context = {
+            'completed_orders': completed_orders,
+            'pending_orders': pending_orders,
+        }
+
+        return render(request, 'mainapp/admin-orders.html', context)
